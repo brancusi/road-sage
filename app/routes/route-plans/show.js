@@ -2,6 +2,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 import Ember from 'ember';
 const INCLUDES = [
   'route-visits',
+  'route-visits.route-plan',
   'route-visits.visit-window',
   'route-visits.visit-window.location',
   'route-visits.visit-window.location.item-desires',
@@ -11,13 +12,17 @@ const INCLUDES = [
   'route-visits.visit-window.location.company',
 
   'route-visits.fulfillments',
+  'route-visits.fulfillments.pod',
   'route-visits.fulfillments.route-visit',
   'route-visits.fulfillments.stock',
   'route-visits.fulfillments.stock.stock-levels',
+  'route-visits.fulfillments.stock.stock-levels.item',
   'route-visits.fulfillments.credit-note',
   'route-visits.fulfillments.credit-note.credit-note-items',
+  'route-visits.fulfillments.credit-note.credit-note-items.item',
   'route-visits.fulfillments.order',
   'route-visits.fulfillments.order.order-items',
+  'route-visits.fulfillments.order.order-items.item',
   'route-visits.fulfillments.order.location',
   'route-visits.fulfillments.order.location.address',
   'route-visits.fulfillments.order.location.item-desires',

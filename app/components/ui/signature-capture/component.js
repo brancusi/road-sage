@@ -2,8 +2,6 @@ import Ember from 'ember';
 
 const {
   and,
-  alias,
-  empty,
   notEmpty
 } = Ember.computed;
 

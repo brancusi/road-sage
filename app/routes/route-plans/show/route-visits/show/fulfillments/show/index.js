@@ -14,7 +14,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     },
 
     submitFulfillment() {
-      console.log('submitFulfillment');
+      // console.log('submitFulfillment');
     },
 
     didTransition() {

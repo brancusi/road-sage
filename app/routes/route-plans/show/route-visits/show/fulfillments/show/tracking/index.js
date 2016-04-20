@@ -16,7 +16,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     if(fulfillment.belongsTo('stock').value()) {
       const stock = fulfillment.get('stock');
       const missingItemDesires = itemDesires
-        .filter(itemDesire => itemDesires.get('enabled'))
+        .filter(itemDesire => itemDesire.get('enabled'))
         .filter(itemDesire =>
           !stock.get('stockLevels')
             .find(sl => sl.get('item.id') === itemDesire.get('item.id')));
@@ -40,7 +40,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     if(fulfillment.belongsTo('creditNote').value()) {
       const creditNote = fulfillment.get('creditNote');
       const missingItemDesires = itemDesires
-        .filter(itemDesire => itemDesires.get('enabled'))
+        .filter(itemDesire => itemDesire.get('enabled'))
         .filter(itemDesire => !creditNote.get('creditNoteItems')
           .find(creditNoteItem => creditNoteItem.get('item.id') === itemDesire.get('item.id')));
 

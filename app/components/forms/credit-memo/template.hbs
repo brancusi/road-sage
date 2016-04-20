@@ -1,0 +1,29 @@
+{{log validCreditNoteItems}}
+<div class='header'>
+  <span class='title row stretch'>Credit Note</span>
+  <div class='col info'>
+    <div class="col">
+      <span class='row stretch infoRow'>
+        <span class="label">Sales Order:</span>
+        <span class="content">1001</span>
+      </span>
+      <span class='row stretch infoRow'>
+        <span class="label">Credit Date:</span>
+        <span class="content">{{date}}</span>
+      </span>
+      <span class='row stretch infoRow'>
+        <span class="label">Customer:</span>
+        <span class="content">{{model.location.name}}</span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class='rowContainer'>
+  {{#each validCreditNoteItems as |cni|}}
+    {{rows/credit-note-row
+        name=cni.item.name
+        total=(product cni.quantity cni.unitPrice)
+        quantity=cni.quantity}}
+  {{/each}}
+</div>

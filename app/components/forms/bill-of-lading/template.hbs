@@ -1,0 +1,38 @@
+<div class='header'>
+  <span class='title row stretch'>Bill of Lading</span>
+  <div class='col info'>
+    <div class="col">
+      <span class='row stretch infoRow'>
+        <span class="label">Sales Order:</span>
+        <span class="content">1001</span>
+      </span>
+      <span class='row stretch infoRow'>
+        <span class="label">Delivery Date:</span>
+        <span class="content">{{date}}</span>
+      </span>
+      <span class='row stretch infoRow'>
+        <span class="label">Customer #:</span>
+        <span class="content">{{model.location.code}}</span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class='rowContainer'>
+  {{#each model.order.orderItems as |soi|}}
+    {{rows/bill-of-lading-row
+        name=soi.item.name
+        quantity=soi.quantity}}
+  {{/each}}
+
+  {{rows/bill-of-lading-row
+      name='Total'
+      emphasize=true
+      quantity=totalQuantity}}
+</div>
+
+{{ui/signature-capture
+  signature=model.pod.signature
+  name=model.pod.name
+  onNameChanged=onNameChanged
+  onSignature=onSignature}}

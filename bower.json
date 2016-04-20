@@ -1,0 +1,19 @@
+{
+  "name": "roadsage",
+  "dependencies": {
+    "moment": ">= 2.8.0",
+    "moment-timezone": ">= 0.1.0",
+    "signature_pad": "~1.5.2",
+    "string": "stringjs#~3.3.1",
+    "numeral": "numeraljs#~1.5.3",
+    "ceibo": "1.1.0",
+    "jquery-mockjax": "2.0.1",
+    "ember": "beta",
+    "ember-cli-shims": "~0.1.1",
+    "ember-cli-test-loader": "0.2.2",
+    "ember-qunit-notifications": "0.1.0"
+  },
+  "resolutions": {
+    "ember": "beta"
+  }
+}

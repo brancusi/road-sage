@@ -1,0 +1,45 @@
+{{#if signing}}
+  <div class="col">
+
+
+  {{ui/signature-area
+    drawingEnded=(action 'handleNewSignature')}}
+  <div class="row stretch">
+    <input
+      type="text"
+      name="name"
+      class="name"
+      placeholder="name"
+      value="{{name}}"
+      oninput={{action onNameChanged}}
+      onchange={{action onNameChanged}}>
+  </div>
+  <div class="row">
+    {{ui/icon-button
+      icon='clear'
+      onClick=(action 'cancel')}}
+    {{ui/icon-button
+      icon='done'
+      disabled=(not readyToSubmit)
+      onClick=(action 'submit')}}
+  </div>
+</div>
+
+
+{{else if hasSignature}}
+  <div class="row">
+    <span class="col stretch imageContainer">
+      <img src={{signature}} alt="signature" />
+      <p class="namePreview">{{name}}</p>
+    </span>
+    <span class="col stretch">
+      {{ui/icon-button
+        icon='create'
+        onClick=(action 'requestedSign')}}
+    </span>
+  </div>
+{{else}}
+  {{ui/icon-button
+    icon='create'
+    onClick=(action 'requestedSign')}}
+{{/if}}

@@ -1,0 +1,31 @@
+<div class="row locationToolsContainer">
+  <div class="addressContainer col">
+    <span class="addressLabel">
+      {{streetAddress}}
+    </span>
+    <span class="cityLabel">
+      {{city}}, {{zip}}
+    </span>
+  </div>
+  {{ui/icon-button
+    icon='directions'
+    size='2'
+    color=white
+    flat=true
+    backgroundColor=colors.DARK_GREY
+    onClick=(action attrs.mapLocation)}}
+</div>
+
+<div class="row center uiContainer">
+  <div class="card-1">
+    {{ui/icon-button
+      icon='done'
+      label='Submit'
+      size='2'
+      color=white
+      backgroundColor=colors.SKY_BLUE
+      disabled=pending
+      onClick=(action attrs.submit)
+    }}
+  </div>
+</div>

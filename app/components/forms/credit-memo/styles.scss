@@ -1,0 +1,40 @@
+& {
+  margin: 0.5em;
+  background-color: $light-blue;
+}
+
+&.hidden {
+  display: none;
+}
+
+.header {
+  padding: 0.25em 0.5em 1em 0.5em;
+  background-color: #FAFCFC;
+  color: $dark-grey;
+
+  .infoRow {
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .label {
+    margin-right: 1em;
+    font-size: 0.8em;
+  }
+
+  .content {
+    font-weight: 600;
+  }
+}
+
+.title {
+  font-weight: 600;
+  justify-content: center;
+  font-size: 1.4em;
+  margin: 1em 0;
+}
+
+.info {
+  font-size: 1.3em;
+  align-items: flex-end;
+}

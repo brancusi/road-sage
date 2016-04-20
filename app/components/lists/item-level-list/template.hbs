@@ -1,0 +1,6 @@
+{{#each model as |itemLevel index|}}
+  {{rows/item-level-list-row
+    model=itemLevel
+    index=index
+    onClick=rowSelected}}
+{{/each}}

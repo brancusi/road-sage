@@ -1,0 +1,5 @@
+{{#each model.orders as |order|}}
+  {{forms/bill-of-lading
+      model=order
+      onSignature=onSignature}}
+{{/each}}

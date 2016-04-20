@@ -1,0 +1,21 @@
+<div class="col">
+  {{ui/item-tracker
+      label='Sunseed Chorizo'
+      starting=model.stockLevel.quantity
+      returns=model.creditNoteItem.quantity
+      startingChanged=(route-action 'startingChanged')
+      returnsChanged=(route-action 'returnsChanged')}}
+
+  <div class="row center">
+    <div class="card-1">
+      {{ui/icon-button
+        icon='done_all'
+        label='Mark Tracked'
+        size='2'
+        color=white
+        backgroundColor=colors.DARK_GREY
+        onClick=(route-action 'markCompleted')
+      }}
+    </div>
+  </div>
+</div>

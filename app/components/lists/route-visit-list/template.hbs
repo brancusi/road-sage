@@ -1,0 +1,6 @@
+{{#each model as |routeVisit index|}}
+  {{rows/route-visit-list-row
+    model=routeVisit
+    onClick=rowSelected
+    index=index}}
+{{/each}}

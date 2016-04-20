@@ -1,0 +1,23 @@
+& {
+ margin-top: 1em;
+}
+
+.uiContainer {
+  margin-top: 1em;
+}
+
+.locationToolsContainer {
+  margin: 1em;
+  background-color: $dark-grey;
+  justify-content: space-between;
+}
+
+.addressContainer {
+  color: white;
+  padding: 1em;
+  justify-content: center;
+}
+
+.addressLabel {
+  font-size: 1.2em;
+}

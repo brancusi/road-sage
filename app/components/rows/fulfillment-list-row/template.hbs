@@ -1,0 +1,21 @@
+<span class="col index">
+  {{formattedIndex}}
+</span>
+
+<div class="row stretch outerContainer">
+  <div class="content col">
+    <span class="companyName">
+      {{cap locationName}}
+    </span>
+    <span class="locationCode">
+      {{cap locationCode}}
+    </span>
+  </div>
+
+  <span class="row iconContainer">
+    {{#if model.fulfilled}}
+      <i class="material-icons">done</i>
+    {{/if}}
+    <i class="material-icons">keyboard_arrow_right</i>
+  </span>
+</div>

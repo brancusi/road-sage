@@ -1,0 +1,53 @@
+& {
+  cursor: pointer;
+  align-items: center;
+  // padding: 1em 0.5em;
+  background-color: #F3FDFF;
+  color: $dark-grey;
+  margin: 0.5em 0.5em 0 0.5em;
+  font-size: 2em;
+  align-items: stretch;
+  justify-content: space-between;
+  border-radius: 3px;
+
+  .iconContainer {
+    color: white;
+    background-color: $dark-grey;
+  }
+}
+
+&.disabled {
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+&:active {
+  opacity: 0.5;
+}
+
+&.completed {
+  .iconContainer {
+    color: $dark-grey;
+    background-color: #CAFFD9;
+  }
+}
+
+.material-icons {
+  font-size: 1em;
+}
+
+.label {
+  margin-right: 0.7em;
+  font-size: 0.8em;
+}
+
+.labelIconContainer {
+  padding-left: 0.5em;
+  align-items: center;
+}
+
+.iconContainer {
+  padding: 1em 0.5em;
+  min-height: 100%;
+  align-items: center;
+}

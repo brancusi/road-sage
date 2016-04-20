@@ -1,0 +1,24 @@
+<div class="row label">
+  {{label}}
+</div>
+
+<div class="row itemCounterContent">
+  {{ui/icon-button
+    icon='remove'
+    size=1.6
+    backgroundColor='#00B3DD'
+    disabled=cannotDecrement
+    onClick=(action 'change' -1)}}
+
+  {{input
+    value=value
+    type="number"
+    pattern="[0-9]*"
+    inputmode="numeric"}}
+
+  {{ui/icon-button
+    icon='add'
+    size=1.6
+    backgroundColor='#00B3DD'
+    onClick=(action 'change' 1)}}
+</div>

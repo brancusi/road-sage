@@ -1,0 +1,16 @@
+{{lists/item-level-list
+  rowSelected=(action 'selectItemLevel')
+  model=model.itemLevels}}
+
+<div class="row center">
+  <div class="card-1">
+    {{ui/icon-button
+      icon='done_all'
+      label='Mark All Tracked'
+      size='2'
+      color=white
+      backgroundColor=colors.DARK_GREY
+      onClick=(action 'submit')
+    }}
+  </div>
+</div>

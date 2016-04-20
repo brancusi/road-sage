@@ -1,0 +1,20 @@
+{{forms/bill-of-lading
+    model=model
+    onNameChanged=onNameChanged
+    onSignature=onSignature}}
+
+{{forms/credit-memo
+    model=model}}
+
+<div class="row center uiContainer">
+  <div class="card-1">
+    {{ui/icon-button
+      icon='done'
+      label='Submit'
+      size='2'
+      color=white
+      backgroundColor=colors.DARK_GREY
+      disabled=incomplete
+      onClick=submit}}
+  </div>
+</div>

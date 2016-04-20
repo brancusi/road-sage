@@ -1,0 +1,6 @@
+{{#each model as |fulfillment index|}}
+  {{rows/fulfillment-list-row
+    model=fulfillment
+    onClick=rowSelected
+    index=index}}
+{{/each}}

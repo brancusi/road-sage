@@ -1,0 +1,23 @@
+& {
+  align-items: center;
+  background-color: #FFEB8A;
+}
+
+&.hidden {
+  display: none;
+}
+
+.content {
+  padding: 0 1em;
+  font-size: 1.3em;
+  color: $dark-grey;
+}
+
+.label {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.info {
+  font-size: 0.8em;
+}

@@ -11,9 +11,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   _prepStock(fulfillment) {
-    const itemDesires = fulfillment.get('routeVisit.visitWindow.location.itemDesires');
+    const location = fulfillment.get('routeVisit.visitWindow.location');
+    const itemDesires = location.get('itemDesires');
 
-    if(fulfillment.belongsTo('stock').value()) {
+    if(fulfillment.belongsTo('stock').id() || fulfillment.belongsTo('stock').value()) {
       const stock = fulfillment.get('stock');
       const missingItemDesires = itemDesires
         .filter(itemDesire => itemDesire.get('enabled'))
@@ -25,8 +26,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         .forEach(itemDesire => this.store.createRecord('stock-level', {stock, item:itemDesire.get('item')}));
 
     } else {
-      const location = fulfillment.get('routeVisit.visitWindow.location');
-      const stock = this.store.createRecord('stock', {fulfillment, location});
+      const stock = this.store.createRecord('stock', {location});
+      fulfillment.set('stock', stock);
 
       itemDesires
         .filter(itemDesire => itemDesire.get('enabled'))
@@ -35,9 +36,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   _prepCreditNote(fulfillment) {
-    const itemDesires = fulfillment.get('routeVisit.visitWindow.location.itemDesires');
-
-    if(fulfillment.belongsTo('creditNote').value()) {
+    const location = fulfillment.get('routeVisit.visitWindow.location');
+    const itemDesires = location.get('itemDesires');
+    // console.log(fulfillment.belongsTo('creditNote').id(), fulfillment.belongsTo('creditNote').value());
+    if(fulfillment.belongsTo('creditNote').id() || fulfillment.belongsTo('creditNote').value()) {
       const creditNote = fulfillment.get('creditNote');
       const missingItemDesires = itemDesires
         .filter(itemDesire => itemDesire.get('enabled'))
@@ -48,8 +50,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         .forEach(itemDesire => this._createCreditNoteItem(creditNote, itemDesire.get('item')));
 
     } else {
-      const location = fulfillment.get('routeVisit.visitWindow.location');
-      const creditNote = this.store.createRecord('creditNote', {fulfillment, location});
+      const creditNote = this.store.createRecord('creditNote', {location});
+      fulfillment.set('creditNote', creditNote);
+
       itemDesires
         .filter(itemDesire => itemDesire.get('enabled'))
         .forEach(itemDesire => this._createCreditNoteItem(creditNote, itemDesire.get('item')));
@@ -72,6 +75,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
       fulfillment.get('creditNote.creditNoteItems')
         .forEach(cni => cni.set('locallyCompleted', true));
+
+      fulfillment.get('stock').setProperties({takenAt:moment().toDate(), dayOfWeek:moment().days()});
 
       this.transitionTo('route-plans.show.route-visits.show.fulfillments.show');
     },

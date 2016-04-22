@@ -11,6 +11,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     const stockLevel = fulfillment.get('stock.stockLevels').find(sl => sl.get('item.id') === params.item_id);
     const creditNoteItem = fulfillment.get('creditNote.creditNoteItems').find(cni => cni.get('item.id') === params.item_id);
     return {
+      fulfillment,
       stockLevel,
       creditNoteItem
     };
@@ -20,12 +21,16 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       const dto = this.modelFor('route-plans.show.route-visits.show.fulfillments.show.tracking.item');
       dto.stockLevel.set('quantity', val);
       dto.stockLevel.set('locallyCompleted', false);
+
+      dto.fulfillment.set('fulfillmentState', 'pending');
     },
 
     returnsChanged(val) {
       const dto = this.modelFor('route-plans.show.route-visits.show.fulfillments.show.tracking.item');
       dto.creditNoteItem.set('quantity', val);
       dto.creditNoteItem.set('locallyCompleted', false);
+
+      dto.fulfillment.set('fulfillmentState', 'pending');
     },
 
     didTransition() {

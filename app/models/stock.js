@@ -5,6 +5,7 @@ import computed from 'ember-computed-decorators';
 
 export default Model.extend({
   takenAt:      attr('date'),
+  dayOfWeek:    attr('number'),
 
   location:     belongsTo('location'),
   fulfillment:  belongsTo('fulfillment'),
@@ -13,5 +14,7 @@ export default Model.extend({
   @computed('stockLevels.@each.{completed}')
   completed(records) {
     return records.every(r => r.get('completed'));
-  }
+  },
+
+  valid: true
 });

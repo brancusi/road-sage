@@ -5,8 +5,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
     const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
 
-    if(!fulfillment.belongsTo('pod').value()) {
-      this.store.createRecord('pod', {fulfillment});
+    if(!fulfillment.belongsTo('pod').id()) {
+      const pod = this.store.createRecord('pod');
+      fulfillment.set('pod', pod);
     }
 
     return fulfillment;
@@ -16,14 +17,23 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     onNameChanged(name) {
       const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
       fulfillment.set('pod.name', name.target.value);
+      fulfillment.set('fulfillmentState', 'pending');
     },
 
     onSignature(signature) {
       const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
       fulfillment.set('pod.signature', signature);
+      fulfillment.set('pod.signedAt', moment().toDate());
+      fulfillment.set('fulfillmentState', 'pending');
     },
 
     submit() {
+      const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
+      fulfillment.set('creditNote.date', moment().toDate());
+
+      fulfillment.set('fulfillmentState', 'pending');
+
+      this.transitionTo('route-plans.show.route-visits.show.fulfillments.show');
     },
 
     didTransition() {

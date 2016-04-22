@@ -22,5 +22,10 @@ export default Model.extend({
   @computed('position')
   positionFormatted(position) {
     return position + 1;
+  },
+
+  @computed('fulfillments.@each.{completed}')
+  fulfilled(records) {
+    return records.every(r => r.get('fulfilled'));
   }
 });

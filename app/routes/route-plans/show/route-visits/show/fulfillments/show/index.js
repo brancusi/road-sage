@@ -10,11 +10,17 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     review() {
       this.transitionTo('route-plans.show.route-visits.show.fulfillments.show.review');
-
     },
 
     submitFulfillment() {
-      // console.log('submitFulfillment');
+      const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
+      fulfillment.setProperties({fulfillmentState: 'fulfilled', submittedAt: moment().toDate()});
+
+      if(fulfillment.get('routeVisit.hasMultipleFulfillments')) {
+        this.transitionTo('route-plans.show.route-visits.show');
+      } else {
+        this.transitionTo('route-plans.show');
+      }
     },
 
     didTransition() {

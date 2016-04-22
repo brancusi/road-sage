@@ -6,6 +6,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   init () {
     this._super();
-    this.get('remoteSync').bootstrap({store: this.store});
+    this.get('remoteSync').start();
   }
 });

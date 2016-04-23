@@ -19,17 +19,17 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   actions: {
     startingChanged(val) {
       const dto = this.modelFor('route-plans.show.route-visits.show.fulfillments.show.tracking.item');
-      dto.stockLevel.set('quantity', val);
-      dto.stockLevel.set('locallyCompleted', false);
-
+      dto.stockLevel.set('starting', val);
+      dto.stockLevel.set('trackingState', 'pending');
       dto.fulfillment.set('fulfillmentState', 'pending');
     },
 
     returnsChanged(val) {
       const dto = this.modelFor('route-plans.show.route-visits.show.fulfillments.show.tracking.item');
+      dto.stockLevel.set('returns', val);
       dto.creditNoteItem.set('quantity', val);
-      dto.creditNoteItem.set('locallyCompleted', false);
 
+      dto.stockLevel.set('trackingState', 'pending');
       dto.fulfillment.set('fulfillmentState', 'pending');
     },
 
@@ -47,8 +47,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     markCompleted() {
       const dto = this.modelFor('route-plans.show.route-visits.show.fulfillments.show.tracking.item');
 
-      dto.stockLevel.set('locallyCompleted', true);
-      dto.creditNoteItem.set('locallyCompleted', true);
+      dto.stockLevel.set('trackingState', 'fulfilled');
 
       this.transitionTo('route-plans.show.route-visits.show.fulfillments.show.tracking');
     }

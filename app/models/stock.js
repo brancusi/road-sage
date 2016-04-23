@@ -11,9 +11,9 @@ export default Model.extend({
   fulfillment:  belongsTo('fulfillment'),
   stockLevels:  hasMany('stock-level'),
 
-  @computed('stockLevels.@each.{completed}')
-  completed(records) {
-    return records.every(r => r.get('completed'));
+  @computed('stockLevels.@each.{tracked}')
+  tracked(records) {
+    return records.every(r => r.get('tracked'));
   },
 
   valid: true

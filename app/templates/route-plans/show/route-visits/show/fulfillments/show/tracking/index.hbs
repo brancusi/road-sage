@@ -1,8 +1,8 @@
-{{#each items as |item i|}}
+{{#each model.stock.stockLevels as |stockLevel i|}}
   {{rows/completeable-label-row
-    label=item.label
-    model=item
-    completed=item.completed
+    label=stockLevel.item.name
+    model=stockLevel.item
+    completed=stockLevel.tracked
     index=i
     onClick=(route-action 'trackItem')}}
 {{/each}}

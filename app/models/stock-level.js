@@ -1,11 +1,17 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
-import Completeable from 'roadsage/mixins/completeable';
 
-export default Model.extend(Completeable, {
-  quantity:   attr('number', {defaultValue:0}),
+const { equal, not } = Ember.computed;
 
-  item:       belongsTo('item'),
-  stock:      belongsTo('stock')
+export default Model.extend({
+  starting:       attr('number', {defaultValue:0}),
+  returns:        attr('number', {defaultValue:0}),
+  trackingState:  attr('string'),
+
+  item:           belongsTo('item'),
+  stock:          belongsTo('stock'),
+
+  pending:        equal('trackingState', 'pending'),
+  tracked:        not('pending')
 });

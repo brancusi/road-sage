@@ -1,8 +1,8 @@
 <div class="col">
   {{ui/item-tracker
       label='Sunseed Chorizo'
-      starting=model.stockLevel.quantity
-      returns=model.creditNoteItem.quantity
+      starting=model.stockLevel.starting
+      returns=model.stockLevel.returns
       startingChanged=(route-action 'startingChanged')
       returnsChanged=(route-action 'returnsChanged')}}
 

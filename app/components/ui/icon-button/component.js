@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import style from 'roadsage/utils/styles';
 import colors from 'roadsage/constants/colors';
+import Clickable from 'roadsage/mixins/clickable';
 
 const {
   computed: {
@@ -8,7 +9,7 @@ const {
   }
 } = Ember;
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(Clickable, {
   classNames: ['row'],
   classNameBindings: ['disabled', 'flat:flat:card-1'],
   attributeBindings:['componentStyles:style'],
@@ -29,15 +30,5 @@ export default Ember.Component.extend({
       'color': color,
       'background-color': backgroundColor
     };
-  },
-
-  didInsertElement() {
-    this.mc = new Hammer.Manager(this.element);
-    this.mc.add( new Hammer.Tap({ event: 'singleTap', taps: 1, time: 1000 }) );
-    this.mc.on('singleTap', () => this.attrs.onClick());
-  },
-
-  willDestroyElement() {
-    this.mc.destroy();
   }
 });

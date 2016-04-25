@@ -1,12 +1,13 @@
 import Ember from 'ember';
 import computed from 'ember-computed-decorators';
+import Clickable from 'roadsage/mixins/clickable';
 
 const {
   bool,
   alias
 } = Ember.computed;
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(Clickable, {
   classNames: ['row', 'card-1'],
   classNameBindings: ['completed'],
 
@@ -19,14 +20,5 @@ export default Ember.Component.extend({
   companyAddress: alias('model.visitWindow.location.address.street'),
   companyCity: alias('model.visitWindow.location.address.city'),
 
-  completed: bool('model.isFulfilled'),
-
-  didInsertElement() {
-    this.mc = new Hammer(this.element);
-    this.mc.on('tap', () => this.attrs.onClick(this.get('model')));
-  },
-
-  willDestroyElement() {
-    this.mc.destroy();
-  }
+  completed: bool('model.isFulfilled')
 });

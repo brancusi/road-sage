@@ -1,25 +1,14 @@
 import Ember from 'ember';
 import computed from 'ember-computed-decorators';
 import moment from 'moment';
+import Clickable from 'roadsage/mixins/clickable';
 
-export default Ember.Component.extend({
+const { equal } = Ember.computed;
+
+export default Ember.Component.extend(Clickable, {
   classNames: ['row', 'card-1'],
 
-  didInsertElement() {
-    this.tracker = setInterval(::this._calculateFromNow, 5000);
-    this.mc = new Hammer(this.element);
-    this.mc.on('tap', () => this.attrs.onClick(this.get('model')));
-  },
-
-  willDestroyElement() {
-    clearInterval(this.tracker);
-    this.mc.destroy();
-  },
-
-  _calculateFromNow() {
-    const isToday = moment(this.get('model.date')).isSame(moment(), 'day');
-    this.set('isToday', isToday);
-  },
+  isToday: equal('date', moment().format('dddd - MMM Do')),
 
   @computed('model.{date}')
   date(date) {

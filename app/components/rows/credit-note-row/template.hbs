@@ -1,9 +1,11 @@
 <span>{{name}}</span>
 <span class="row">
-  <span class="quanityContainer">
-    <span class='x'>x</span>
-    <span class='quantity'>{{quantity}}</span>
-  </span>
+  {{#if hasQuantity}}
+    <span class="quanityContainer">
+      <span class='x'>x</span>
+      <span class='quantity'>{{quantity}}</span>
+    </span>
+  {{/if}}
   <span class="row priceContainer">
     <span class='price'>{{currency total}}</span>
   </span>

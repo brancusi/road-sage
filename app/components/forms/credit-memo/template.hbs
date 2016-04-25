@@ -3,8 +3,8 @@
   <div class='col info'>
     <div class="col">
       <span class='row stretch infoRow'>
-        <span class="label">Sales Order:</span>
-        <span class="content">1001</span>
+        <span class="label">Credit Note:</span>
+        <span class="content">{{model.creditNoteNumber}}</span>
       </span>
       <span class='row stretch infoRow'>
         <span class="label">Credit Date:</span>
@@ -12,7 +12,7 @@
       </span>
       <span class='row stretch infoRow'>
         <span class="label">Customer:</span>
-        <span class="content">{{model.location.name}}</span>
+        <span class="content">{{model.location.company.name}}</span>
       </span>
     </div>
   </div>
@@ -22,7 +22,11 @@
   {{#each validCreditNoteItems as |cni|}}
     {{rows/credit-note-row
         name=cni.item.name
-        total=(product cni.quantity cni.unitPrice)
+        total=cni.total
         quantity=cni.quantity}}
   {{/each}}
+  {{rows/credit-note-row
+      name='Total'
+      emphasize=true
+      total=totalCredit}}
 </div>

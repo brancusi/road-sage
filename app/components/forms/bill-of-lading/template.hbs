@@ -1,10 +1,10 @@
 <div class='header'>
-  <span class='title row stretch'>Bill of Lading</span>
+  <span class='title row stretch'>Invoice</span>
   <div class='col info'>
     <div class="col">
       <span class='row stretch infoRow'>
-        <span class="label">Sales Order:</span>
-        <span class="content">1001</span>
+        <span class="label">Invoice #</span>
+        <span class="content">{{model.orderNumber}}</span>
       </span>
       <span class='row stretch infoRow'>
         <span class="label">Delivery Date:</span>
@@ -12,17 +12,17 @@
       </span>
       <span class='row stretch infoRow'>
         <span class="label">Customer #:</span>
-        <span class="content">{{model.location.code}}</span>
+        <span class="content">{{model.location.company.name}}</span>
       </span>
     </div>
   </div>
 </div>
 
 <div class='rowContainer'>
-  {{#each model.order.orderItems as |soi|}}
+  {{#each validOrderitems as |orderItem|}}
     {{rows/bill-of-lading-row
-        name=soi.item.name
-        quantity=soi.quantity}}
+        name=orderItem.item.name
+        quantity=orderItem.quantity}}
   {{/each}}
 
   {{rows/bill-of-lading-row
@@ -30,9 +30,3 @@
       emphasize=true
       quantity=totalQuantity}}
 </div>
-
-{{ui/signature-capture
-  signature=model.pod.signature
-  name=model.pod.name
-  onNameChanged=onNameChanged
-  onSignature=onSignature}}

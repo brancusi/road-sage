@@ -1,10 +1,11 @@
-{{forms/bill-of-lading
-    model=model
+{{forms/bill-of-lading model=model.order}}
+{{forms/credit-memo model=model.creditNote}}
+
+{{ui/signature-capture
+    signature=model.pod.signature
+    name=model.pod.name
     onNameChanged=onNameChanged
     onSignature=onSignature}}
-
-{{forms/credit-memo
-    model=model.creditNote}}
 
 <div class="row center uiContainer">
   <div class="card-1">

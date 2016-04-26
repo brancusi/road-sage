@@ -1,6 +1,4 @@
 /* jshint node: true */
-// const DEV_HOST = 'http://localhost:3000';
-// const PROD_HOST = 'http://api.mlvegankitchen.com';
 
 module.exports = function(environment) {
   var ENV = {
@@ -38,7 +36,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    ENV.apiHost = process.env.DEV_HOST;
+    ENV.apiHost = process.env.API_HOST;
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -47,7 +45,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'test') {
-    ENV.apiHost = process.env.DEV_HOST;
+    ENV.apiHost = process.env.API_HOST;
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
@@ -60,7 +58,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.apiHost = process.env.PROD_HOST;
+    ENV.apiHost = process.env.API_HOST;
   }
 
   return ENV;

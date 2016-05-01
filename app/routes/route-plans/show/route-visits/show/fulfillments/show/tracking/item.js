@@ -47,7 +47,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     markCompleted() {
       const dto = this.modelFor('route-plans.show.route-visits.show.fulfillments.show.tracking.item');
 
-      dto.stockLevel.set('trackingState', 'fulfilled');
+      dto.stockLevel.set('trackingState', 'tracked');
 
       this.transitionTo('route-plans.show.route-visits.show.fulfillments.show.tracking');
     }

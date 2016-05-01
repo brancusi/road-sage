@@ -10,7 +10,6 @@ const INCLUDES = [
   'route-visits.visit-window.location.address',
   'route-visits.visit-window.location.visit-windows',
   'route-visits.visit-window.location.company',
-
   'route-visits.fulfillments',
   'route-visits.fulfillments.pod',
   'route-visits.fulfillments.pod.fulfillment',
@@ -34,25 +33,6 @@ const INCLUDES = [
   'route-visits.fulfillments.order.location.company',
   'route-visits.fulfillments.order.location.company.price-tier',
   'route-visits.fulfillments.order.location.company.price-tier.item-prices'
-  // 'route-visits.orders',
-  // 'route-visits.orders.order-items',
-  // 'route-visits.orders.order-items.item',
-  // 'route-visits.orders.location',
-  // 'route-visits.orders.location.company',
-  // 'route-visits.orders.location.company.price-tier',
-  // 'route-visits.orders.location.company.price-tier.item-prices',
-  // 'route-visits.orders.location.company.price-tier.item-prices.item',
-  // 'route-visits.orders.location.item-desires',
-  // 'route-visits.orders.location.item-desires.location',
-  // 'route-visits.orders.location.item-desires.item',
-  // 'route-visits.item-levels',
-  // 'route-visits.item-levels.item',
-  // 'route-visits.item-levels.location',
-  // 'route-visits.item-levels.route-visit',
-  // 'route-visits.visit-window',
-  // 'route-visits.visit-window.location',
-  // 'route-visits.visit-window.location.address',
-  // 'route-visits.visit-window.location.company'
 ];
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {

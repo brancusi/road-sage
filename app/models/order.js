@@ -10,16 +10,20 @@ const SALES_ORDER = 'sales-order';
 const PURCHASE_ORDER = 'purchase-order';
 
 export default Model.extend({
-  orderNumber:      attr('string'),
-  orderType:        attr('string', {defaultValue: SALES_ORDER}),
-  deliveryDate:     attr('string'),
+  orderNumber:        attr('string'),
+  xeroState:          attr('string'),
+  notificationsState: attr('string'),
+  orderType:          attr('string'),
 
-  location:         belongsTo('location'),
-  orderItems:       hasMany('order-item'),
-  fulfillment:      belongsTo('fulfillment'),
+  // TODO: Should this be type date?
+  deliveryDate:       attr('string'),
 
-  isSalesOrder:     equal('orderType', SALES_ORDER),
-  isPurchaseOrder:  equal('orderType', PURCHASE_ORDER),
+  location:           belongsTo('location'),
+  orderItems:         hasMany('order-item'),
+  fulfillment:        belongsTo('fulfillment'),
+
+  isSalesOrder:       equal('orderType', SALES_ORDER),
+  isPurchaseOrder:    equal('orderType', PURCHASE_ORDER),
 
   @computed('orderItems.@each.{quantity}')
   empty(orderItems) {

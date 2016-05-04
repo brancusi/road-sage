@@ -21,7 +21,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       const dto = this.modelFor('route-plans.show.route-visits.show.fulfillments.show.tracking.item');
       dto.stockLevel.set('starting', val);
       dto.stockLevel.set('trackingState', 'pending');
-      dto.fulfillment.set('fulfillmentState', 'pending');
+      dto.fulfillment.set('deliveryState', 'pending');
     },
 
     returnsChanged(val) {
@@ -30,7 +30,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       dto.creditNoteItem.set('quantity', val);
 
       dto.stockLevel.set('trackingState', 'pending');
-      dto.fulfillment.set('fulfillmentState', 'pending');
+      dto.fulfillment.set('deliveryState', 'pending');
     },
 
     didTransition() {

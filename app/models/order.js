@@ -12,7 +12,6 @@ const PURCHASE_ORDER = 'purchase-order';
 export default Model.extend({
   orderNumber:        attr('string'),
   xeroState:          attr('string'),
-  notificationsState: attr('string'),
   orderType:          attr('string'),
 
   // TODO: Should this be type date?

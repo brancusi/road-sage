@@ -17,21 +17,21 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     onNameChanged(name) {
       const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
       fulfillment.set('pod.name', name.target.value);
-      fulfillment.set('fulfillmentState', 'pending');
+      fulfillment.set('deliveryState', 'pending');
     },
 
     onSignature(signature) {
       const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
       fulfillment.set('pod.signature', signature);
       fulfillment.set('pod.signedAt', moment().toDate());
-      fulfillment.set('fulfillmentState', 'pending');
+      fulfillment.set('deliveryState', 'pending');
     },
 
     submit() {
       const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
       fulfillment.set('creditNote.date', moment().toDate());
 
-      fulfillment.set('fulfillmentState', 'pending');
+      fulfillment.set('deliveryState', 'pending');
 
       this.transitionTo('route-plans.show.route-visits.show.fulfillments.show');
     },

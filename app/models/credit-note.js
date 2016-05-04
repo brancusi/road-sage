@@ -8,7 +8,6 @@ export default Model.extend({
   date:                 attr('date'),
   creditNoteNumber:     attr('string'),
   xeroState:            attr('string'),
-  notificationsState:   attr('string'),
 
   location:             belongsTo('location'),
   fulfillment:          belongsTo('fulfillment'),

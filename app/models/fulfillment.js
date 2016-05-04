@@ -6,7 +6,7 @@ import { belongsTo } from 'ember-data/relationships';
 const { equal, not } = Ember.computed;
 
 export default Model.extend({
-  fulfillmentState:   attr('string'),
+  deliveryState:   attr('string'),
   submittedAt:        attr('date'),
 
   routeVisit:         belongsTo('route-visit'),
@@ -15,6 +15,6 @@ export default Model.extend({
   creditNote:         belongsTo('credit-note'),
   pod:                belongsTo('pod'),
 
-  pending:            equal('fulfillmentState', 'pending'),
+  pending:            equal('deliveryState', 'pending'),
   fulfilled:          not('pending')
 });

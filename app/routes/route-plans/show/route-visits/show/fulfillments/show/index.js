@@ -14,7 +14,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     submitFulfillment() {
       const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
-      fulfillment.setProperties({fulfillmentState: 'fulfilled', submittedAt: moment().toDate()});
+      fulfillment.setProperties({deliveryState: 'fulfilled', submittedAt: moment().toDate()});
       fulfillment.set('creditNote.xeroState', 'submitted');
       fulfillment.set('order.xeroState', 'submitted');
 

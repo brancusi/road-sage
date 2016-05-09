@@ -4,7 +4,8 @@ import Clickable from 'roadsage/mixins/clickable';
 
 const {
   bool,
-  alias
+  alias,
+  gt
 } = Ember.computed;
 
 export default Ember.Component.extend(Clickable, {
@@ -16,9 +17,22 @@ export default Ember.Component.extend(Clickable, {
     return index + 1;
   },
 
-  companyName: alias('model.visitWindow.location.company.name'),
-  companyAddress: alias('model.visitWindow.location.address.street'),
-  companyCity: alias('model.visitWindow.location.address.city'),
+  fulfillments: alias('model.fulfillments'),
+  firstLocation: alias('fulfillments.firstObject.order.location'),
+  company: alias('firstLocation.company'),
+
+  hasMultipleFulfillments: gt('fulfillments.length', 1),
+
+  @computed('hasMultipleFulfillments', 'company.name', 'firstLocation.name', 'firstLocation.id')
+  title(hasMultiple, companyName, locationName, locationId) {
+    return hasMultiple ? `${companyName} - Multiple orders` : `${companyName} - ${locationName} - ${locationId}`;
+  },
+
+  address: alias('model.address.full'),
+
+  // companyName: alias('model.ful.location.company.name'),
+  // companyAddress: alias('model.visitWindow.location.address.street'),
+  // companyCity: alias('model.visitWindow.location.address.city'),
 
   completed: bool('model.isFulfilled')
 });

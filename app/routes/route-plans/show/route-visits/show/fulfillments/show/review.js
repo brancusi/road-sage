@@ -29,7 +29,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     submit() {
       const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
-      fulfillment.set('creditNote.date', moment().toDate());
+
+      if(fulfillment.belongsTo('creditNote').value()){
+        fulfillment.set('creditNote.date', moment().toDate());
+      }
 
       fulfillment.set('deliveryState', 'pending');
 

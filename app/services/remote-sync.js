@@ -4,11 +4,12 @@ const fulfilledParentPredicate = x => x.get('fulfillment.fulfilled');
 const fulfilledPredicate = x => x.get('hasDirtyAttributes') && !x.get('isSaving') && x.get('fulfilled');
 const dirtyRecordPredicate = x => x.get('hasDirtyAttributes') && !x.get('isSaving');
 
+
 export default Ember.Service.extend({
   store: Ember.inject.service(),
 
   start() {
-    setInterval(::this._processQueue, 5000);
+    setInterval(::this._processQueue, 200);
   },
 
   async _saveAllOfType(modelType) {
@@ -33,18 +34,30 @@ export default Ember.Service.extend({
   },
 
   async _processQueue() {
-    const store = this.get('store');
+    if(!this.processing) {
+      this.processing = true;
+      console.log('Entered processing!');
 
-    await Promise.all([
-      this._saveAllOfType('pod'),
-      this._saveFulfillmentRecordsOfType('stock', 'stockLevels'),
-      this._saveFulfillmentRecordsOfType('order', 'orderItems'),
-      this._saveFulfillmentRecordsOfType('credit-note', 'creditNoteItems')
-    ]);
+      const store = this.get('store');
 
-    store.peekAll('fulfillment')
-      .filter(fulfilledPredicate)
-      .filter(dirtyRecordPredicate)
-      .map(r => r.save());
+      await Promise.all([
+        this._saveAllOfType('pod'),
+        this._saveFulfillmentRecordsOfType('stock', 'stockLevels'),
+        this._saveFulfillmentRecordsOfType('order', 'orderItems'),
+        this._saveFulfillmentRecordsOfType('credit-note', 'creditNoteItems')
+      ]);
+
+      await Promise.all(store.peekAll('fulfillment')
+        .filter(fulfilledPredicate)
+        .filter(dirtyRecordPredicate)
+        .map(r => r.save()));
+
+      await Promise.all(store.peekAll('route-visit')
+        .filter(fulfilledPredicate)
+        .filter(dirtyRecordPredicate)
+        .map(r => r.save()));
+
+      this.processing = false;
+    }
   }
 });

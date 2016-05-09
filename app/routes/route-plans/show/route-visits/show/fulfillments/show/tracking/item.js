@@ -5,15 +5,15 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model(params) {
     const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
 
-    // this._prepStockLevel(fulfillment, params.item_id);
+    this._prepStockLevel(fulfillment, params.item_id);
     // this._prepCreditItem(fulfillment, params.item_id);
 
     const stockLevel = fulfillment.get('stock.stockLevels').find(sl => sl.get('item.id') === params.item_id);
-    const creditNoteItem = fulfillment.get('creditNote.creditNoteItems').find(cni => cni.get('item.id') === params.item_id);
+    // const creditNoteItem = fulfillment.get('creditNote.creditNoteItems').find(cni => cni.get('item.id') === params.item_id);
     return {
       fulfillment,
       stockLevel,
-      creditNoteItem
+      // creditNoteItem
     };
   },
   actions: {
@@ -27,7 +27,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     returnsChanged(val) {
       const dto = this.modelFor('route-plans.show.route-visits.show.fulfillments.show.tracking.item');
       dto.stockLevel.set('returns', val);
-      dto.creditNoteItem.set('quantity', val);
+      // dto.creditNoteItem.set('quantity', val);
 
       dto.stockLevel.set('trackingState', 'pending');
       dto.fulfillment.set('deliveryState', 'pending');
@@ -63,7 +63,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         this.store.createRecord('stock-level', {stock:fulfillment.get('stock'), item});
       }
     } else {
-      const stock = this.store.createRecord('stock', {fulfillment, location:fulfillment.get('routeVisit.visitWindow.location')});
+      const stock = this.store.createRecord('stock', {fulfillment, location:fulfillment.get('order.location')});
       this.store.createRecord('stock-level', {stock, item});
     }
   },

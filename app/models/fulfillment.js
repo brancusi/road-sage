@@ -6,7 +6,8 @@ import { belongsTo } from 'ember-data/relationships';
 const { equal, not } = Ember.computed;
 
 export default Model.extend({
-  deliveryState:   attr('string'),
+  deliveryState:      attr('string'),
+  notificationState:  attr('string'),
   submittedAt:        attr('date'),
 
   routeVisit:         belongsTo('route-visit'),

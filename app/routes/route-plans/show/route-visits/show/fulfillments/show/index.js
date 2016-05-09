@@ -15,12 +15,18 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     submitFulfillment() {
       const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
       fulfillment.setProperties({deliveryState: 'fulfilled', submittedAt: moment().toDate()});
-      fulfillment.set('creditNote.xeroState', 'submitted');
+
+      if(fulfillment.belongsTo('creditNote').value()){
+        fulfillment.set('creditNote.xeroState', 'submitted');
+      }
+
       fulfillment.set('order.xeroState', 'submitted');
+      fulfillment.set('notificationState', 'awaiting');
 
       if(fulfillment.get('routeVisit.hasMultipleFulfillments')) {
         this.transitionTo('route-plans.show.route-visits.show');
       } else {
+        fulfillment.get('routeVisit').set('routeVisitState', 'fulfilled');
         this.transitionTo('route-plans.show');
       }
     },

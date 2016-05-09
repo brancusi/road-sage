@@ -2,6 +2,8 @@ import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 
+const { alias, gt } = Ember.computed;
+
 export default Model.extend({
   name:                 attr('string'),
   code:                 attr('string'),
@@ -15,5 +17,8 @@ export default Model.extend({
   stocks:               hasMany('stock'),
   creditNotes:          hasMany('credit-note'),
   visitDays:            hasMany('visit-day'),
-  visitWindows:         hasMany('visit-window')
+
+  visitWindows:         alias('address.visitWindows'),
+  lat:                  alias('address.lat'),
+  lng:                  alias('address.lng')
 });

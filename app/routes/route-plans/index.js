@@ -12,7 +12,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   model () {
     const query = {
-      'filter[template]':'false',
       'page[offset]':'0',
       'page[limit]':'3',
       'filter[user]':this.get('session.data.authenticated.id')

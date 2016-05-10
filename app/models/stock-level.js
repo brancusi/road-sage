@@ -8,7 +8,7 @@ const { equal, not } = Ember.computed;
 export default Model.extend({
   starting:       attr('number', {defaultValue:0}),
   returns:        attr('number', {defaultValue:0}),
-  trackingState:  attr('string'),
+  trackingState:  attr('string', {defaultValue:'pending'}),
 
   item:           belongsTo('item'),
   stock:          belongsTo('stock'),

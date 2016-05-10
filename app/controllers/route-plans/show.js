@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
 
   @computed('model.{date}')
   date(date) {
-    return moment(date).format('dddd - MMM Do');
+
+    return moment('YYYY-MM-DD').format('dddd - MMM Do');
   }
 });

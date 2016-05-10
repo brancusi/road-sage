@@ -6,11 +6,17 @@ const {
 } = Ember.computed;
 
 export default Ember.Component.extend({
-  hasName: notEmpty('name'),
-  hasSignature: notEmpty('signature'),
-  readyToSubmit: and('hasName', 'tempSignature'),
+  classNames:     ['card-2'],
+
+  hasName:        notEmpty('tempName'),
+  hasSignature:   notEmpty('signature'),
+  readyToSubmit:  and('hasName', 'tempSignature'),
 
   actions: {
+    onNameChanged(e) {
+      this.set('tempName', e.target.value);
+    },
+
     requestedSign() {
       this.setProperties({signing:true, tempSignature:undefined});
     },
@@ -20,8 +26,8 @@ export default Ember.Component.extend({
     },
 
     submit() {
-      this.attrs.onSignature(this.get('tempSignature'));
-      this.setProperties({signing:false, tempSignature:undefined});
+      this.attrs.onSignature(this.get('tempSignature'), this.get('tempName'), moment().toDate());
+      this.setProperties({signing:false, tempSignature:undefined, tempName:''});
     },
 
     handleNewSignature(data) {

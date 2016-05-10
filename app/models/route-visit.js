@@ -10,6 +10,7 @@ export default Model.extend({
   position:         attr('number'),
   arriveAt:         attr('number'),
   departAt:         attr('number'),
+  completedAt:      attr('date'),
   routeVisitState:  attr('string'),
 
   fulfillments:   hasMany('fulfillment'),

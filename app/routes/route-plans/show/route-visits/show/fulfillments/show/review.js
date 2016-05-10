@@ -14,17 +14,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   actions: {
-    onNameChanged(name) {
+    onSignature(signature, name, signedAt) {
       const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
-      fulfillment.set('pod.name', name.target.value);
+      fulfillment.get('pod').setProperties({signature, name, signedAt});
       fulfillment.set('deliveryState', 'pending');
-    },
-
-    onSignature(signature) {
-      const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
-      fulfillment.set('pod.signature', signature);
-      fulfillment.set('pod.signedAt', moment().toDate());
-      fulfillment.set('deliveryState', 'pending');
+      fulfillment.set('routeVisit.routeVisitState', 'pending');
     },
 
     submit() {
@@ -35,6 +29,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       }
 
       fulfillment.set('deliveryState', 'pending');
+      fulfillment.set('routeVisit.routeVisitState', 'pending');
 
       this.transitionTo('route-plans.show.route-visits.show.fulfillments.show');
     },

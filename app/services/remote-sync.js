@@ -9,7 +9,7 @@ export default Ember.Service.extend({
   store: Ember.inject.service(),
 
   start() {
-    setInterval(::this._processQueue, 200);
+    setInterval(::this._processQueue, 5000);
   },
 
   async _saveAllOfType(modelType) {
@@ -36,7 +36,6 @@ export default Ember.Service.extend({
   async _processQueue() {
     if(!this.processing) {
       this.processing = true;
-      console.log('Entered processing!');
 
       const store = this.get('store');
 

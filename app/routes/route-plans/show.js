@@ -24,9 +24,12 @@ const INCLUDES = [
   'route-visits.fulfillments.order.location.address',
   'route-visits.fulfillments.order.location.item-desires',
   'route-visits.fulfillments.order.location.item-desires.item',
+  'route-visits.fulfillments.order.location.item-credit-rates',
+  'route-visits.fulfillments.order.location.item-credit-rates.item',
   'route-visits.fulfillments.order.location.company',
   'route-visits.fulfillments.order.location.company.price-tier',
   'route-visits.fulfillments.order.location.company.price-tier.item-prices'
+  // 'route-visits.fulfillments.order.location.company.price-tier.item-prices.item'
 ];
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {

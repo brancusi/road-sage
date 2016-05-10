@@ -4,7 +4,6 @@ import { hasMany } from 'ember-data/relationships';
 import computed from 'ember-computed-decorators';
 
 export default Model.extend({
-  name:               attr('string'),
   date:               attr('string'),
 
   routeVisits:        hasMany('route-visit'),
@@ -12,5 +11,10 @@ export default Model.extend({
   @computed('date')
   formattedDate(date) {
     return moment(date, 'YYYY-MM-DD').format("dddd, MMM Do - YYYY");
+  },
+
+  @computed('routeVisits.@each.{position}')
+  sortedRouteVisits(routeVisits) {
+    return routeVisits.sortBy('position');
   }
 });

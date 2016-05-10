@@ -12,6 +12,6 @@ export default Ember.Component.extend(Clickable, {
 
   @computed('model.{date}')
   date(date) {
-    return moment(date).format('dddd - MMM Do');
+    return moment(date, 'YYYY-MM-DD').format('dddd - MMM Do');
   }
 });

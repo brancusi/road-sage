@@ -5,7 +5,8 @@ import { belongsTo, hasMany } from 'ember-data/relationships';
 const { equal, not } = Ember.computed;
 
 export default Model.extend({
-  date:                 attr('date'),
+  date:                 attr('date', {defaultValue: moment().format('MM-DD-YYYY')}),
+  submittedAt:          attr('date'),
   creditNoteNumber:     attr('string'),
   xeroState:            attr('string'),
 
@@ -14,5 +15,9 @@ export default Model.extend({
   creditNoteItems:      hasMany('credit-note-item'),
 
   pending:              equal('xeroState', 'pending'),
-  submitted:            equal('xeroState', 'submitted')
+  submitted:            equal('xeroState', 'submitted'),
+
+  creditNoteItemForItem(item) {
+    return this.get('creditNoteItems').find(cni => cni.get('item.id') === item.get('id'));
+  }
 });

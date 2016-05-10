@@ -26,7 +26,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       if(fulfillment.get('routeVisit.hasMultipleFulfillments')) {
         this.transitionTo('route-plans.show.route-visits.show');
       } else {
-        fulfillment.get('routeVisit').set('routeVisitState', 'fulfilled');
+        fulfillment.get('routeVisit').setProperties({routeVisitState: 'fulfilled', completedAt:moment().toDate()});
         this.transitionTo('route-plans.show');
       }
     },

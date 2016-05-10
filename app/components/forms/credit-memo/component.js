@@ -13,7 +13,7 @@ export default Ember.Component.extend({
 
   @computed('model.date')
   date(date) {
-    return moment(date).format('MM/DD/YYYY');
+    return moment(date, 'YYYY-MM-DD').format('MM/DD/YYYY');
   },
 
   @computed('validCreditNoteItems.@each.{total}')

@@ -3,8 +3,11 @@ import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
 import computed from 'ember-computed-decorators';
 
+const { equal } = Ember.computed;
+
 export default Model.extend({
   date:               attr('string'),
+  publishedState:     attr('string'),
 
   routeVisits:        hasMany('route-visit'),
 
@@ -16,5 +19,9 @@ export default Model.extend({
   @computed('routeVisits.@each.{position}')
   sortedRouteVisits(routeVisits) {
     return routeVisits.sortBy('position');
-  }
+  },
+
+  isDraft: equal('publishedState', 'draft'),
+  isPublished: equal('publishedState', 'published'),
+  isCompleted: equal('publishedState', 'completed')
 });
